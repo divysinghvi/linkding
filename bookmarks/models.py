@@ -104,12 +104,8 @@ class Bookmark(models.Model):
 
     @staticmethod
     def query_existing(owner: User, url: str) -> models.QuerySet:
-        # Find existing bookmark by normalized URL, or fall back to exact URL if
-        # normalized URL was not generated for whatever reason
-        normalized_url = normalize_url(url)
-        q = Q(owner=owner) & (
-            Q(url_normalized=normalized_url) | Q(url_normalized="", url=url)
-        )
+        # Look up existing bookmarks by the raw URL string directly.
+        q = Q(owner=owner, url=url)
         return Bookmark.objects.filter(q)
 
 
