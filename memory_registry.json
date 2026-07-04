@@ -1,0 +1,41 @@
+{
+  "D1-d547e351": {
+    "data_id": "58c0d06a-3aa0-5018-a551-792804802466",
+    "sha": "d547e351b5ab79779b3391e6c792911ff10cae4c",
+    "decision": "Escape tag names in HTML export using html.escape",
+    "rationale": "Ensures that special characters in tag names (e.g., quotes, ampersands) are properly HTML\u2011escaped, preventing malformed HTML and preserving correct rendering of exported bookmarks.",
+    "scope": "bookmarks/services/exporter.py",
+    "importance": 0.95,
+    "status": "active",
+    "commit_date": "2026-06-20T20:17:43+02:00"
+  },
+  "D2-6985d56e": {
+    "data_id": "21f2d2e0-93f8-5b05-acb9-a36238fae88e",
+    "sha": "6985d56e2622db32fc15eeb4f73c75e4c94fc23e",
+    "decision": "Sanitize asset filenames to ASCII-only characters, replacing non\u2011ASCII characters with underscores",
+    "rationale": "Ensures on\u2011disk filenames are safe to write regardless of filesystem encoding or locale, preventing errors when uploading assets with non\u2011ASCII characters.",
+    "scope": "bookmarks/services/assets.py (asset filename generation), any code that creates asset filenames",
+    "importance": 0.96,
+    "status": "active",
+    "commit_date": "2026-06-21T09:06:31+02:00"
+  },
+  "D3-30510d34": {
+    "data_id": "d0476b4b-6640-5aee-9cd5-e9992509c0c3",
+    "sha": "30510d3463237f0653ea8c1cdbd889c070062566",
+    "decision": "Always compare, store, and query bookmarks using their normalized URL (url_normalized / href_normalized) for deduplication and tag handling",
+    "rationale": "Using the normalized URL ensures that bookmarks differing only by trivial URL variations (trailing slash, query order, etc.) are treated as the same entity, preventing duplicate entries and duplicate tag assignments during import and synchronization.",
+    "scope": "bookmarks/services/importer.py, bookmarks/services/parser.py, any code that queries or creates Bookmark objects",
+    "importance": 0.93,
+    "status": "superseded",
+    "commit_date": "2026-06-21T10:54:00+02:00"
+  },
+  "UPDATE-2026-07-04-7f77f00c": {
+    "data_id": "7f77f00c-d1d0-59d8-a025-e2b96178f055",
+    "sha": "",
+    "decision": "UPDATE: Always compare, store, and query bookmarks using their normalized URL (url_normalized / href_normalized) for deduplication and tag handling superseded \u2014 cli verify: intentional exact-match dedup by raw URL",
+    "rationale": "cli verify: intentional exact-match dedup by raw URL",
+    "scope": "global",
+    "importance": 0.95,
+    "status": "active"
+  }
+}
