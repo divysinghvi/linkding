@@ -1,0 +1,8 @@
+# codemind CI runtime deps (vendored into .codemind/ by `codemind init`).
+cognee>=1.0.0
+openai>=1.50.0
+pydantic>=2.0
+gitpython>=3.1
+rich>=13.0
+python-dotenv>=1.0
+requests>=2.31
